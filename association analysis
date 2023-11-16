@@ -1,0 +1,50 @@
+import pandas as pd
+
+sellings = {"Transactions": ["T1", "T2", "T3", "T4", "T5"],
+            "Products1": ["Cola", "Cola", "Cola", "Cola", "Rice"],
+            "Products2": ["Beer", "Beer", "Beer", "Pampers", "Pampers"],
+            "Products3": ["Potatoes", "Cucumber", "Toiletpaper", "Salad", "Chips"]}
+df = pd.DataFrame(data=sellings)
+
+df
+
+cokecount = 0
+for value in df["Products1"]:
+  if value == "Cola":
+    cokecount += 1
+print(cokecount)
+
+beercount = 0
+for value in df["Products2"]:
+  if value == "Beer":
+    beercount += 1
+print(beercount)
+
+
+count = 0
+for value in df["Products1"]:
+    count += 1
+print(count)
+
+rel_coke = cokecount / count
+
+rel_beer = beercount / count
+
+print(rel_coke, rel_beer)
+
+
+print(f"Der relative Anteil von Cola ist {rel_coke} und von Bier{rel_beer}")
+
+cc = 0
+for i in range(len(df["Transactions"])):
+    if df.iloc[i]["Products1"] == "Cola" and df.iloc[i]["Products2"] == "Beer":
+      cc +=1
+print(cc)
+
+support = cc / len(df["Transactions"])
+print(support)
+
+print("Der Support(Cola, Beer) liegt bei {}".format(support))
+
+konfidenz = cc / cokecount
+print("Die konfidenz das Cola und Bier zusammen gekauft werden, liegt bei {}".format(konfidenz))
